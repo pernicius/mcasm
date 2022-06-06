@@ -43,6 +43,7 @@ typedef struct config {
         bool set; // any flag set?
         bool l;   // debug FileLoader
         bool p;   // debug Parser
+        bool g;   // debug Generator
     } d_flags;
     bool s; // silent
 } config_t;

@@ -26,6 +26,8 @@
 
 #include "Parser.h"
 
+#define debug_gen(out)  if (g_cfg.d || g_cfg.d_flags.g) { cout << out << endl; }
+#define silent_gen(out) if (!g_cfg.s || g_cfg.d || g_cfg.d_flags.g) { cout << out << endl; }
 // some message macros
 #define debug(out)  if (g_cfg.d || g_cfg.d_flags.p) { cout << out << endl; }
 #define silent(out) if (!g_cfg.s || g_cfg.d || g_cfg.d_flags.p) { cout << out << endl; }
@@ -201,7 +203,7 @@ int Parser::ParseSignals() {
 
         // chip
         new_signal.nchip = _parseNum(0, &p1);
-        signals_nchips = max(signals_nchips, new_signal.nchip+1);
+        signals_nchips = max(signals_nchips, new_signal.nchip);
         if (p1 == string::npos) {
             parse_error_pos(0, "Numeric value (chip/byte number) expected!");
             return -1;
@@ -380,23 +382,17 @@ int Parser::ParseOpcode() {
             }
             else
                 ival = stoi(vi[i], &p1);
-//cout << "ival: " << ival << endl;
             // mask
             for (int x=0; x < vinputs[i].nnum; x++)
                 imask = (imask << 1) + 1;
-//cout << "imask:" << imask << endl;
             // lshift to position of input
             ival = ival << vinputs[i].nstart;
             imask = imask << vinputs[i].nstart;
-//cout << "s-ival: " << ival << endl;
-//cout << "s-imask:" << imask << endl;
             // save
             new_op.nival += ival;
             new_op.nimask += imask;
         }
 	}
-//cout << "TODO...op_inputs:" << endl;
-//for (auto i : vi) cout << "     [" << i << "]" << endl;
 
     // signals
     for (++cur_line; cur_line != g_vlines.end(); ++cur_line) {
@@ -420,7 +416,7 @@ int Parser::ParseOpcode() {
         vs.insert(vs.end(), vstemp.begin(), vstemp.end());
     }
     // signals - generate with default values
-    for (int x=0; x < signals_nchips; ++x)
+    for (int x=0; x <= signals_nchips; ++x)
         new_op.vnsignals.insert(new_op.vnsignals.begin(), 0);
     for (auto s : vsignals)
         new_op.vnsignals[s.nchip] += s.defval << s.nstart;
@@ -474,18 +470,16 @@ int Parser::ParseOpcode() {
             new_op.vnsignals[vsignals[nsig].nchip] |= val;
         }
     }
-//cout << "TODO...op_signals:" << endl;
-//for (auto i : vs) cout << "     [" << i << "]" << endl;
 
     // insert in list
     vops.push_back(new_op);
 
     // debug info
     debug("New opcode(" << new_op.sname << ")");
- //   debug("  inputs value: " << cout_int2bin(new_op.nival, inputs_nbits+1));
- //   debug("  inputs mask:  " << cout_int2bin(new_op.nimask, inputs_nbits+1));
- //   for (int x=0; x < signals_nchips; ++x)
- //       debug("  signals[" << x << "]: " << cout_int2bin(new_op.vnsignals[x], signals_nbits+1));
+    debug("  inputs value: " << cout_int2bin(new_op.nival, inputs_nbits+1));
+    debug("  inputs mask:  " << cout_int2bin(new_op.nimask, inputs_nbits+1));
+    for (int x=0; x <= signals_nchips; ++x)
+        debug("  signals[" << x << "]: " << cout_int2bin(new_op.vnsignals[x], signals_nbits+1));
 
     return 1;
 }
@@ -510,7 +504,7 @@ int Parser::Parse() {
             if (signals_nchips > 0) {
                 silent("Number of signal bits found: 0.." << signals_nchips << ":0.." << signals_nbits);
             } else {
-                silent("Number of signal bits found: " << signals_nchips << ":0.." << signals_nbits);
+                silent("Number of signal bits found: 0:0.." << signals_nbits);
             }
             continue;
         }
@@ -549,6 +543,93 @@ int Parser::Parse() {
         return -1;
     }
 
-    silent("Parsing... done (" << vops.size() << " ops).");
+    silent("Parsing... done (" << vops.size() << " ops/instructions)");
+    return 1;
+}
+
+
+int Parser::Generate(const string& out_file) {
+    silent("Generating...");
+
+    int nmaxinval=0;
+    int nmatches=0;
+    vector<FILE *> vfile;
+    vector<int> vndefault;
+    vector<string> vsdefault;
+
+    // max inval
+    for (int x=0; x <= inputs_nbits; x++)
+        nmaxinval = (nmaxinval << 1) + 1;
+
+    // create outfiles
+    silent("Opening target files...");
+    for (int x=0; x <= signals_nchips; ++x) {
+        FILE * pfile;
+        string sfile;
+
+        // i hate that code snipped...
+        char buf[128];
+        int n;
+        n = snprintf(buf, sizeof(buf), out_file.c_str(), x);
+        if (n<0) {
+            error("Internal error: parser.cpp " << __LINE__);
+            return -1;
+        }
+        sfile = buf;
+
+        silent("File: " << sfile);
+        if ((pfile = fopen(sfile.c_str(), "w")) == NULL) {
+            error("Can't open file: " << sfile);
+            return -1;
+        }
+        // write header for Logisim format
+        fputs("v2.0 raw\n", pfile);
+        // add to filelist
+        vfile.push_back(pfile);
+    }
+
+    // default signals value
+    for (int x=0; x<=signals_nchips; ++x) {
+        vndefault.push_back(0);
+        vsdefault.push_back("");
+    }
+    for (auto s : vsignals)
+        vndefault[s.nchip] += s.defval << s.nstart;
+    for (int x=0; x<=signals_nchips; ++x) {
+        char buf[128];
+        sprintf(buf, "%X", vndefault[x]);
+        vsdefault[x] = buf;
+    }
+    
+    // the loop
+    for (int inval=0; inval<=nmaxinval; inval++) {
+        bool match=false;
+
+        // check if opcode matches
+        for (size_t i=0; i < vops.size(); ++i) {
+            if ((inval & vops[i].nimask) == vops[i].nival) {
+                debug_gen("Match: " << cout_int2bin(inval, inputs_nbits+1) << " => " << vops[i].sname);
+                ++nmatches;
+                match = true;
+                // write matching signals
+                for (int x=0; x<=signals_nchips; ++x) {
+                    char buf[128];
+                    sprintf(buf, "%X\n", vops[i].vnsignals[x]);
+                    fputs(buf, vfile[x]);
+                }
+                break;
+            }
+        }
+        // no match found
+        if (!match) {
+            // write default signals
+            for (int x=0; x<=signals_nchips; ++x) {
+                fputs(vsdefault[x].c_str(), vfile[x]);
+                fputs("\n", vfile[x]);
+            }
+        }
+    }
+    
+    silent("Generating... done (" << nmatches << " matches)");
     return 1;
 }

@@ -65,7 +65,7 @@ typedef struct ops {
 
 class Parser
 {
-    // just an iteratur to the current line of g_vlines
+    // just an iterator to the current line of g_vlines
     vector<mcLines>::iterator cur_line;
 
     // internal database
@@ -92,6 +92,7 @@ class Parser
 
 public:
     int Parse();
+    int Generate(const string& out_file);
 };
 
 

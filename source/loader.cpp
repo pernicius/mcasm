@@ -54,7 +54,7 @@ int Loader::LoadFile(const char* filename) {
     // cleanup
     if (Cleanup() == -1)
         return -1;
-    debug("Loading file: '" << filename << "' done (" << v_mclines.size() << " lines).");
+    debug("Loading file: '" << filename << "' done (" << v_mclines.size() << " lines)");
 
 
     // process includes

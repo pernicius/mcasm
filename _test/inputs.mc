@@ -12,11 +12,14 @@
  */
 
 #inputs {
-    0..4 = op       // 5 bits opcode
-    5..7 = fn3      // 3 bits fn3
-    8    = fn7zero  // fn7       (0b0x0000x)
-    9    = fn7b5    // fn7[bit5] (0bx1xxxxx)
-    10   = fn7b0    // fn7[bit0] (0bxxxxxx1)
+    0..4 = op      // 5 bits opcode
+    5..7 = fn3     // 3 bits fn3
+    8    = fn7zero // fn7       (0b0x0000x)
+    9    = fn7b0   // fn7[bit0] (0bxxxxxx1)
+    10   = fn7b5   // fn7[bit5] (0bx1xxxxx)
+    11   = rszero  // rs2       (0b0000x)
+    12   = rs2b0   // rs2[bit0] (0bxxxx1)
+    13   = rxzero  // rs1, rd   (0x00000)
 }
 
 /*

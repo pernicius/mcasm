@@ -40,13 +40,18 @@ void print_help() {
 	cout << "  source is mandatory" << endl;
 	cout << "  target is optional" << endl;
 	cout << "Options:" << endl;
-	cout << "  -d, --debug             Print lots of debugging information." << endl;
+//	cout << "  -f=[format]             Outputformat:" << endl;
+//	cout << "      logisim                 Logisim v2.0 raw (default)" << endl;
+//	cout << "      hex                     Intel hex" << endl;
+//	cout << "      bin                     Binary" << endl;
+	cout << "  -d, --debug             Print lots of debugging information" << endl;
 	cout << "  --debug=[FLAGS]         Print lots of debugging information during..." << endl;
-	cout << "      l                       ...file load." << endl;
-	cout << "      p                       ...parsing." << endl;
-	cout << "  -h, --help              Print this message." << endl;
-	cout << "  -s, --silent, --quiet   Don't echo messages. Only errors." << endl;
-	cout << "  -v, --version           Print the version info and exit." << endl;
+	cout << "      l                       ...file load" << endl;
+	cout << "      p                       ...parsing" << endl;
+	cout << "      g                       ...generating" << endl;
+	cout << "  -h, --help              Print this message" << endl;
+	cout << "  -s, --silent, --quiet   Don't echo messages, only errors" << endl;
+	cout << "  -v, --version           Print the version info and exit" << endl;
 	cout << "" << endl;
 	cout << "Report bugs to <pernicius@web.de>" << endl;
 	cout << "" << endl;
@@ -62,9 +67,21 @@ void print_version() {
 #ifdef VERSION_BUGFIX
 	cout << "." << VERSION_BUGFIX;
 #endif
-//#ifdef VERSION_EXTRA
-//	cout << "-" << VERSION_EXTRA;
-//#endif
+#ifdef VERSION_XDEV
+	cout << "-dev";
+#endif
+#ifdef VERSION_XALPHA
+	cout << "-alpha";
+#endif
+#ifdef VERSION_XBETA
+	cout << "-beta";
+#endif
+#ifdef VERSION_XRC
+	cout << "-RC" << VERSION_XRC;
+#endif
+#endif
+#ifdef DEBUG
+	cout << "+debug";
 #endif
 #endif
 	cout << endl;
@@ -96,6 +113,7 @@ int main (int argc, char * const argv[]) {
 		g_cfg.d_flags.set = false; // any flag is set?
 		g_cfg.d_flags.l   = false; // debug FileLoader
 		g_cfg.d_flags.p   = false; // debug Parser
+		g_cfg.d_flags.g   = false; // debug Generator
 		g_cfg.s           = false; // silent
 
 		// check cmdline options
@@ -121,6 +139,7 @@ int main (int argc, char * const argv[]) {
 					switch(tst[n]) {
 						case 'l': g_cfg.d_flags.set = g_cfg.d_flags.l = true; break;
 						case 'p': g_cfg.d_flags.set = g_cfg.d_flags.p = true; break;
+						case 'g': g_cfg.d_flags.set = g_cfg.d_flags.g = true; break;
 					}
 				}
 				continue;
@@ -163,7 +182,7 @@ int main (int argc, char * const argv[]) {
 
 	// default target
 	if(out_file.empty())
-		out_file = "rom%n.bin";
+		out_file = "rom%d.hex";
 
 	// print debug config
 	if (g_cfg.d || g_cfg.d_flags.set) {
@@ -172,6 +191,7 @@ int main (int argc, char * const argv[]) {
 		if (g_cfg.d_flags.set) {
 			cout << "    flag l [" << (g_cfg.d_flags.l ? "ON" : "OFF") << "]" << endl;
 			cout << "    flag p [" << (g_cfg.d_flags.p ? "ON" : "OFF") << "]" << endl;
+			cout << "    flag g [" << (g_cfg.d_flags.g ? "ON" : "OFF") << "]" << endl;
 		}
 		cout << "  silent[" << (g_cfg.s ? "ON" : "OFF") << "]" << endl;
 		cout << "  source: ";
@@ -193,9 +213,10 @@ int main (int argc, char * const argv[]) {
 		return -1;
 	}
 
-// TODO: generate output files
-cout << "TODO: generate output data..." << endl;
-cout << "TODO: generate output files..." << endl;
+	// Generate
+	if (parser->Generate(out_file.c_str()) == -1) {
+		return -1;
+	}
 
 	delete parser; // will be deleted after generator because it holds all the parsed data
 	return 0;

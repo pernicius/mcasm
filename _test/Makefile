@@ -4,7 +4,7 @@ MCASM = ..\bin\mcasm.exe
 all : rom0.bin
 
 debug : 
-	$(MCASM) --debug=p microcode.mc
+	$(MCASM) --debug=g microcode.mc
 
 silent : 
 	$(MCASM) -s microcode.mc

@@ -1,0 +1,438 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-w64-mingw32
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Jun 06 15:45:53 2022
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 71)
+DIRS = $(sort $(dir $(OBJFILES) $(TARGET) ))
+# default
+.SHELLFLAGS := -c
+# makefile
+MAKEFLAGS = pqrR
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from 'Makefile', line 43)
+TARGET = $(BINDIR)/mcasm$(EXEEXT)
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# makefile
+CURDIR := c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm
+# default
+SHELL := sh.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+VSCODE_NLS_CONFIG = {"locale":"de","availableLanguages":{"*":"de"},"_languagePackId":"76abe230f76758c10463f0219f362aef.de","_translationsConfigFile":"C:\\Users\\perni\\AppData\\Roaming\\Code\\clp\\76abe230f76758c10463f0219f362aef.de\\tcf.json","_cacheRoot":"C:\\Users\\perni\\AppData\\Roaming\\Code\\clp\\76abe230f76758c10463f0219f362aef.de","_resolvedLanguagePackCoreLocation":"C:\\Users\\perni\\AppData\\Roaming\\Code\\clp\\76abe230f76758c10463f0219f362aef.de\\c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5","_corruptedFile":"C:\\Users\\perni\\AppData\\Roaming\\Code\\clp\\76abe230f76758c10463f0219f362aef.de\\corrupted.info","_languagePackSupport":true}
+# environment
+VBOX_MSI_INSTALL_PATH = D:\VirtualBox\Bin\
+# makefile (from 'Makefile', line 115)
+CFLAGS = $(WFLAGS) $(OPTFLAGS) -c $(DEBUG) $(DEPFLAGS) -DMAKE_HOST=\"$(MAKE_HOST)\" -std=c++11  -DVERSION_MAJOR=$(VERSION_MAJOR) -DVERSION_MINOR=$(VERSION_MINOR) -DVERSION_EXTRA=\"$(VERSION_EXTRA)\"
+# environment
+ONEDRIVE = C:\Users\perni\OneDrive
+# makefile (from 'Makefile', line 98)
+DEPFLAGS = -MP -MMD
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# makefile (from 'Makefile', line 62)
+CPPFILES = $(strip $(call rwildcard,$(SRCDIR)/,*.cpp))
+# environment
+TMP = C:\Users\perni\AppData\Local\Temp
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+PROGRAMW6432 = C:\Program Files
+# makefile (from 'Makefile', line 68)
+DEPFILES = $(patsubst %.obj,%.d,$(OBJFILES))
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-e811cea2-e3b6-483a-97d5-3d7538668c22-sock
+# environment
+VSCODE_CWD = C:\Users\perni\Desktop\CPU Design\CPUs\Digital - RISC-V\mcasm\mcasm
+# default
+MAKE_HOST := x86_64-w64-mingw32
+# environment
+PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\PuTTY\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Dell\Dell EMC Repository Manager;C:\Program Files (x86)\AOMEI\AOMEI Backupper\6.5.1;C:\Program Files\Git\cmd;C:\Users\perni\AppData\Local\Microsoft\WindowsApps;c:\ipmitool_1.8.18-dellemc_p001;C:\Users\perni\Desktop\CPU Design\Programme\MinGW\mingw64\bin;;C:\Users\perni\AppData\Local\Programs\Microsoft VS Code\bin
+# makefile (from 'Makefile', line 34)
+VERSION_EXTRA = dev
+# makefile (from 'Makefile', line 51)
+LD = g++
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# makefile (from 'Makefile', line 46)
+MD = mkdir
+# environment
+PROCESSOR_ARCHITECTURE = AMD64
+# environment
+USERPROFILE = C:\Users\perni
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+VSCODE_LOG_STACK = false
+# environment
+DRM = C:\ProgramData\Dell\DRM
+# environment
+NUMBER_OF_PROCESSORS = 8
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from 'Makefile', line 86)
+WFLAGS = -Wall -Wextra
+# makefile (from 'Makefile', line 47)
+RD = rd
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
+# makefile (from 'Makefile', line 37)
+SRCDIR = source
+# automatic
+%F = $(notdir $%)
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15988_TJBPTSZKBDFJTLQF
+# makefile (from 'Makefile', line 39)
+BLDDIR = build
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+COMPUTERNAME = LAPTOP-KKNN9AEU
+# environment
+PROGRAMFILES = C:\Program Files
+# default
+.LOADED := 
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# makefile (from 'Makefile', line 4)
+uname_S := Windows
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# makefile (from 'Makefile', line 140)
+define CPPRULE
+$(patsubst $(SRCDIR)/%,$(BLDDIR)/%,$(1:%.cpp=%.obj)) : $(1) Makefile
+	$$(CC) $$(strip $$(CFLAGS) $$< -o $$@)
+endef
+# environment
+USERNAME = perni
+# environment
+PUBLIC = C:\Users\Public
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# makefile (from 'Makefile', line 90)
+OPTFLAGS = -Og
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\perni\AppData\Roaming\Code\CachedData\c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+COMMONPROGRAMFILES = C:\Program Files\Common Files
+# environment
+LOGONSERVER = \\LAPTOP-KKNN9AEU
+# environment
+ONEDRIVECONSUMER = C:\Users\perni\OneDrive
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = LAPTOP-KKNN9AEU
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 38)
+BINDIR = bin
+# makefile (from 'Makefile', line 50)
+CC = g++
+# environment
+MEDIT_CHITUBOX_BASIC_BRIDGE = C:\Program Files\CHITUBOX V1.9.2\CHITUBOX.exe
+# default
+MAKE_VERSION := 4.2.1
+# environment
+__PSLOCKDOWNPOLICY = 0
+# makefile (from 'Makefile', line 31)
+VERSION_MAJOR = 0
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# makefile (from 'Makefile', line 119)
+LFLAGS = $(WFLAGS) $(DEBUG)
+# environment
+LOCALAPPDATA = C:\Users\perni\AppData\Local
+# makefile (from 'Makefile', line 15)
+DIRSEP = $(basename \)
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# makefile (from 'Makefile', line 59)
+rwildcard = $(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
+# default
+MAKE_COMMAND := make.exe
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\2fb778d9a4c1eeb31543b019db865e0c-1.67.2-main-sock
+# environment
+HOMEPATH = \Users\perni
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+SYSTEMROOT = C:\WINDOWS
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\perni\AppData\Roaming
+# environment
+TEMP = C:\Users\perni\AppData\Local\Temp
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# makefile (from 'Makefile', line 16)
+EXEEXT = .exe
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = 8e0a
+# makefile (from 'Makefile', line 65)
+OBJFILES = $(patsubst %.cpp,%.obj,$(patsubst $(SRCDIR)/%,$(BLDDIR)/%,$(CPPFILES)))
+# makefile (from 'Makefile', line 33)
+VERSION_BUGFIX = 
+# default
+.RECIPEPREFIX := 
+# makefile
+.DEFAULT_GOAL := all
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+VSCODE_PID = 15988
+# makefile (from 'Makefile', line 32)
+VERSION_MINOR = 1
+# environment
+USERDOMAIN_ROAMINGPROFILE = LAPTOP-KKNN9AEU
+# variable set hash-table stats:
+# Load=121/1024=12%, Rehash=0, Collisions=25/283=9%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# source (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source, mtime 1654523137): 8 files, no impossibilities.
+# source/loader.h (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/loader.h, mtime 1654523137): could not be opened.
+# source/parser.h (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/parser.h, mtime 1654523137): could not be opened.
+# . (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm, mtime 1654523152): 8 files, no impossibilities.
+# source/main.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/main.cpp, mtime 1654523137): could not be opened.
+# source/loader.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/loader.cpp, mtime 1654523137): could not be opened.
+# source/globals.h (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/globals.h, mtime 1654523137): could not be opened.
+# source/parser.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/parser.cpp, mtime 1654523137): could not be opened.
+
+# 16 files, no impossibilities in 8 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+build/loader.obj: source/loader.cpp Makefile
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 144):
+	$(CC) $(strip $(CFLAGS) $< -o $@)
+
+bin/:
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := bin/
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/14=7%
+#  recipe to execute (from 'Makefile', line 150):
+	-@$(MD) $(subst /,$(DIRSEP),$@) 2> nul || :
+
+all: bin/ build/ bin/mcasm.exe
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+
+# Not a target:
+source/parser.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-06 15:45:37
+#  File has been updated.
+#  Successfully updated.
+
+build/:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 150):
+	-@$(MD) $(subst /,$(DIRSEP),$@) 2> nul || :
+
+# Not a target:
+source/main.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/parser.obj: source/parser.cpp Makefile
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 144):
+	$(CC) $(strip $(CFLAGS) $< -o $@)
+
+# Not a target:
+build/loader.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+bin/mcasm.exe: build/main.obj build/parser.obj build/loader.obj
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 131):
+	$(CC) $(LFLAGS) $^ -o $@
+
+build/main.obj: source/main.cpp Makefile
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 144):
+	$(CC) $(strip $(CFLAGS) $< -o $@)
+
+# Not a target:
+build/parser.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 156):
+	-@$(RD) /S /Q $(BINDIR) 2> nul || :
+	-@$(RD) /S /Q $(BLDDIR) 2> nul || :
+	
+
+# Not a target:
+build/main.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+source/loader.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=17/1024=2%, Rehash=0, Collisions=0/50=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 33 / storage = 355 B / avg = 10 B
+# current buf: size = 8162 B / used = 355 B / count = 33 / avg = 10 B
+
+# strcache performance: lookups = 64 / hit rate = 48%
+# hash-table stats:
+# Load=33/8192=0%, Rehash=0, Collisions=2/64=3%
+# Finished Make data base on Mon Jun 06 15:45:53 2022
+
+ 
