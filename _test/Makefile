@@ -1,7 +1,7 @@
 MCASM = ..\bin\mcasm.exe
 
 
-all : rom0.bin
+all : rom0.hex
 
 debug : 
 	$(MCASM) --debug=g microcode.mc
@@ -9,5 +9,5 @@ debug :
 silent : 
 	$(MCASM) -s microcode.mc
 
-rom0.bin : Makefile microcode.mc inputs.mc signals.mc
+rom0.hex : Makefile microcode.mc inputs.mc signals.mc def_op.mc op_RV32I.mc op_RV32Zicsr.mc op_RV32M.mc
 	$(MCASM) microcode.mc
