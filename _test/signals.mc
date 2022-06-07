@@ -21,8 +21,8 @@
 
     0:2     = id_rs1_en // 1 bit  - [stage:id]  enable rs1
     0:3     = id_rs2_en // 1 bit  - [stage:id]  enable rs2
-    0:4     = id_sel_a  // 1 bit  - [stage:id]  ALU input a selector 0:xxx / 1:xxx
-    0:5     = id_sel_b  // 1 bit  - [stage:id]  ALU input b selector 0:xxx / 1:xxx
+    0:4     = id_sel_a  // 1 bit  - [stage:id]  ALU input a selector 0:PC  / 1:Rs1
+    0:5     = id_sel_b  // 1 bit  - [stage:id]  ALU input b selector 0:Rs2 / 1:imm
     0:6..8  = imm_ctrl  // 3 bits - [stage:id]  how to decode the immediate bits
 }
 

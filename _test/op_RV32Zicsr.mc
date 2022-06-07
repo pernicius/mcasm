@@ -39,6 +39,7 @@
  *  - order doesn't matter
  *  - they must be ',' separated
  *  - multiple lines are possible
+ *  - can be a macro identifier
  *  - if only the identifier is given, then it will be set all bits to '1'
  *  - if the identifier is prefixed with '!' the binary inverted default value will be used (0>1, 0b101>0b010)
  *  - identifier=value sets the signal to the given value

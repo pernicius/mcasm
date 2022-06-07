@@ -80,6 +80,15 @@ size_t Parser::_findDefine(const string& str) {
 }
 
 
+size_t Parser::_findMacro(const string& str) {
+	for (size_t x = 0; x < vmacros.size(); ++x) {
+		if (vmacros[x].sname == str)
+			return x;
+	}
+	return string::npos;
+}
+
+
 int Parser::_parseNum(size_t pos, size_t *next) {
     size_t p1, p2;
     int num;
@@ -294,6 +303,50 @@ int Parser::ParseDefines() {
 }
 
 
+// #define xyz { ... }
+int Parser::ParseMacros() {
+    size_t p1, p2;
+    macros_t new_macro = {"", ""};
+
+    // Identifier
+    new_macro.sname = _parseName(7, &p1);
+    if (new_macro.sname.empty()) {
+        parse_error_pos(7, "Identifier (of macro) expected!");
+        return -1;
+    }
+
+    // parse for replacements
+    for (++cur_line; cur_line != g_vlines.end(); ++cur_line) {
+        if (cur_line->sline.find("}", 0) != string::npos) {
+            break;
+        }
+        // get full line replacement
+        p1 = cur_line->sline.find_first_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        p2 = cur_line->sline.find_last_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_");
+        if ((p1 == string::npos) || (p2 == string::npos)) {
+            parse_error("Identifier (of signal) expected!");
+            return -1;
+        }
+        // append
+        if (new_macro.scontent.empty())
+            new_macro.scontent = cur_line->sline.substr(p1, p2-p1+1);
+        else
+            new_macro.scontent += "," + cur_line->sline.substr(p1, p2-p1+1);
+        // replace spaces
+        while((p1 = new_macro.scontent.find(" ")) != string::npos)
+            new_macro.scontent.erase(p1, 1);
+    }
+
+    // add to list
+    vmacros.push_back(new_macro);
+
+    // debug info
+    debug("New macro: id:" << new_macro.sname << " rep:\"" << new_macro.scontent << "\"");
+
+    return 1;
+}
+
+
 // #defaults { }
 int Parser::ParseDefaults() {
     for (++cur_line; cur_line != g_vlines.end(); ++cur_line) {
@@ -392,11 +445,11 @@ int Parser::ParseOpcode() {
             new_op.nival += ival;
             new_op.nimask += imask;
         }
-	}
+    }
 
     // signals
     for (++cur_line; cur_line != g_vlines.end(); ++cur_line) {
-        vector<string> vstemp;
+        vector<string> vstemp, vstemp2;
 
         if (cur_line->sline.find("}", 0) != string::npos) {
             break;
@@ -404,16 +457,26 @@ int Parser::ParseOpcode() {
         p1 = cur_line->sline.find_first_not_of(' ');
         p2 = cur_line->sline.find_last_not_of(' ');
         if((p1 == string::npos) || (p2 == string::npos)) {
-            parse_error("List of signals expected!");
+            parse_error("List of signals or macros expected!");
         }
+        
         vstemp = split(cur_line->sline.substr(p1, p2-p1+1), ','); // split by ','
         for (size_t i = 0; i < vstemp.size(); ++i) { // trim
             p1 = vstemp[i].find_first_not_of(' ');
             p2 = vstemp[i].find_last_not_of(' ');
             string ss = vstemp[i].substr(p1, p2-p1+1);
-            vstemp[i] = ss;
+            // replace spaces
+            while((p1 = ss.find(" ")) != string::npos)
+                ss.erase(p1, 1);
+            // ss = macro
+            if ((p1 = _findMacro(ss)) != string::npos) {
+                vstemp2 = split(vmacros[p1].scontent, ',');
+                vs.insert(vs.end(), vstemp2.begin(), vstemp2.end());
+            }
+            // ss = signal
+            else
+                vs.push_back(ss);
         }
-        vs.insert(vs.end(), vstemp.begin(), vstemp.end());
     }
     // signals - generate with default values
     for (int x=0; x <= signals_nchips; ++x)
@@ -508,9 +571,18 @@ int Parser::Parse() {
             }
             continue;
         }
-        // #define
-        if (cur_line->sline.compare(0, 7, "#define") == 0) {
+        // #define (constants)
+        if ((cur_line->sline.compare(0, 7, "#define") == 0) &&
+                (cur_line->sline.find("(") != string::npos) &&
+                (cur_line->sline.find(")") != string::npos)) {
             if (ParseDefines() == -1)
+                return -1;
+            continue;
+        }
+        // #define (macros)
+        if ((cur_line->sline.compare(0, 7, "#define") == 0) &&
+                (cur_line->sline.find("{") != string::npos)) {
+            if (ParseMacros() == -1)
                 return -1;
             continue;
         }

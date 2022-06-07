@@ -6,7 +6,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun 06 15:45:53 2022
+# Make data base, printed on Tue Jun 07 15:06:34 2022
 
 # Variables
 
@@ -37,7 +37,7 @@ HOMEDRIVE = C:
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # makefile
-CURDIR := c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm
+CURDIR := c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm
 # default
 SHELL := sh.exe
 # environment
@@ -54,10 +54,12 @@ ONEDRIVE = C:\Users\perni\OneDrive
 DEPFLAGS = -MP -MMD
 # environment
 PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
-# makefile (from 'Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
+# makefile (from 'build/loader.d', line 1)
+MAKEFILE_LIST :=  Makefile build/main.d build/parser.d build/loader.d
 # makefile (from 'Makefile', line 62)
 CPPFILES = $(strip $(call rwildcard,$(SRCDIR)/,*.cpp))
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
 TMP = C:\Users\perni\AppData\Local\Temp
 # environment
@@ -69,9 +71,9 @@ DEPFILES = $(patsubst %.obj,%.d,$(OBJFILES))
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-e811cea2-e3b6-483a-97d5-3d7538668c22-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-e90ed489-b635-4f85-8d48-bf3333d6c1d9-sock
 # environment
-VSCODE_CWD = C:\Users\perni\Desktop\CPU Design\CPUs\Digital - RISC-V\mcasm\mcasm
+VSCODE_CWD = C:\Users\perni\Desktop\CPU Design\CPUs\RISC-V\Digital (v4)\mcasm
 # default
 MAKE_HOST := x86_64-w64-mingw32
 # environment
@@ -103,13 +105,14 @@ WFLAGS = -Wall -Wextra
 # makefile (from 'Makefile', line 47)
 RD = rd
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
+.FEATURES := target-specific order-only second-expansion else-if shortest-s 
+tem undefine oneshell archives jobserver output-sync
 # makefile (from 'Makefile', line 37)
 SRCDIR = source
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15988_TJBPTSZKBDFJTLQF
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15620_GICKNQWUQRWIDDXO
 # makefile (from 'Makefile', line 39)
 BLDDIR = build
 # environment
@@ -250,13 +253,15 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 15988
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+VSCODE_PID = 15620
 # makefile (from 'Makefile', line 32)
 VERSION_MINOR = 1
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-KKNN9AEU
 # variable set hash-table stats:
-# Load=121/1024=12%, Rehash=0, Collisions=25/283=9%
+# Load=123/1024=12%, Rehash=0, Collisions=25/291=9%
 
 # Pattern-specific Variable Values
 
@@ -264,16 +269,16 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-KKNN9AEU
 
 # Directories
 
-# source (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source, mtime 1654523137): 8 files, no impossibilities.
-# source/loader.h (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/loader.h, mtime 1654523137): could not be opened.
-# source/parser.h (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/parser.h, mtime 1654523137): could not be opened.
-# . (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm, mtime 1654523152): 8 files, no impossibilities.
-# source/main.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/main.cpp, mtime 1654523137): could not be opened.
-# source/loader.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/loader.cpp, mtime 1654523137): could not be opened.
-# source/globals.h (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/globals.h, mtime 1654523137): could not be opened.
-# source/parser.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/Digital - RISC-V/mcasm/mcasm/mcasm/source/parser.cpp, mtime 1654523137): could not be opened.
+# source (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm/source, mtime 1654524839): 8 files, no impossibilities.
+# source/loader.h (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm/source/loader.h, mtime 1654146404): could not be opened.
+# source/parser.h (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm/source/parser.h, mtime 1654605930): could not be opened.
+# . (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm, mtime 1654526026): 12 files, no impossibilities.
+# source/main.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm/source/main.cpp, mtime 1654453116): could not be opened.
+# source/loader.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm/source/loader.cpp, mtime 1654366812): could not be opened.
+# source/globals.h (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm/source/globals.h, mtime 1654372318): could not be opened.
+# source/parser.cpp (key c:/Users/perni/Desktop/CPU Design/CPUs/RISC-V/Digital (v4)/mcasm/source/parser.cpp, mtime 1654607008): could not be opened.
 
-# 16 files, no impossibilities in 8 directories.
+# 20 files, no impossibilities in 8 directories.
 
 # Implicit Rules
 
@@ -281,7 +286,7 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-KKNN9AEU
 
 # Files
 
-build/loader.obj: source/loader.cpp Makefile
+build/loader.obj: source/loader.cpp Makefile source/loader.cpp source/Loader.h source/globals.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -356,7 +361,7 @@ source/main.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
-build/parser.obj: source/parser.cpp Makefile
+build/parser.obj: source/parser.cpp Makefile source/parser.cpp source/Parser.h source/globals.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -366,9 +371,9 @@ build/parser.obj: source/parser.cpp Makefile
 # Not a target:
 build/loader.d:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-06-06 16:33:48
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 
 bin/mcasm.exe: build/main.obj build/parser.obj build/loader.obj
 #  Implicit rule search has not been done.
@@ -377,7 +382,7 @@ bin/mcasm.exe: build/main.obj build/parser.obj build/loader.obj
 #  recipe to execute (from 'Makefile', line 131):
 	$(CC) $(LFLAGS) $^ -o $@
 
-build/main.obj: source/main.cpp Makefile
+build/main.obj: source/main.cpp Makefile source/main.cpp source/Loader.h source/globals.h source/Parser.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -387,9 +392,9 @@ build/main.obj: source/main.cpp Makefile
 # Not a target:
 build/parser.d:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-06-07 15:05:05
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -406,12 +411,17 @@ clean:
 	-@$(RD) /S /Q $(BLDDIR) 2> nul || :
 	
 
+source/Loader.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # Not a target:
 build/main.d:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-06-07 15:03:16
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 
 # Not a target:
 source/loader.cpp:
@@ -419,20 +429,30 @@ source/loader.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
+source/globals.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+source/Parser.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=17/1024=2%, Rehash=0, Collisions=0/50=0%
+# Load=20/1024=2%, Rehash=0, Collisions=0/73=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 33 / storage = 355 B / avg = 10 B
-# current buf: size = 8162 B / used = 355 B / count = 33 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 39 / storage = 418 B / avg = 10 B
+# current buf: size = 8162 B / used = 418 B / count = 39 / avg = 10 B
 
-# strcache performance: lookups = 64 / hit rate = 48%
+# strcache performance: lookups = 98 / hit rate = 60%
 # hash-table stats:
-# Load=33/8192=0%, Rehash=0, Collisions=2/64=3%
-# Finished Make data base on Mon Jun 06 15:45:53 2022
+# Load=39/8192=0%, Rehash=0, Collisions=8/98=8%
+# Finished Make data base on Tue Jun 07 15:06:34 2022
 
  

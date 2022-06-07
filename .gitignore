@@ -5,3 +5,4 @@ build/main.obj
 build/parser.d
 build/parser.obj
 bin/mcasm.exe
+_test/rom0.hex

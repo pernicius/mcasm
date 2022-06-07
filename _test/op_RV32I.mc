@@ -60,6 +60,7 @@
  *  - order doesn't matter
  *  - they must be ',' separated
  *  - multiple lines are possible
+ *  - can be a macro identifier
  *  - if only the identifier is given, then it will be set all bits to '1'
  *  - if the identifier is prefixed with '!' the binary inverted default value will be used (0>1, 0b101>0b010)
  *  - identifier=value sets the signal to the given value
@@ -68,200 +69,218 @@
 
 //__op___________...
 #op(op_LUI,      * ) { LUI
-    valid
+    valid, iType_U
+    id_sel_a = 1  // Rs1 = r0
+    id_sel_b = 1  // imm
 }
 
 //__op___________...
 #op(op_AUIPC,    * ) { AUIPC
-    valid
+    valid, iType_U
+    id_sel_a = 1  // PC
+    id_sel_b = 1  // imm
 }
 
 //__op___________...
 #op(op_JAL,      * ) { JAL
-    valid
+    valid, iType_J
+    id_sel_a = 1  // PC
+    id_sel_b = 1  // imm
+    // wb_sel = xxx // PC_next
 }
 
 //__op___________fn3__________...
 #op(op_JALR,     fn3_JALR,    * ) { JALR
-    valid
+    valid, iType_I
+    id_sel_a = 0  // Rs1
+    id_sel_b = 1  // imm
+    // wb_sel = xxx // PC_next
 }
 
 //__op___________fn3__________...
 #op(op_BRANCH,   fn3_BEQ,     * ) { BEQ
-    valid
+    valid, iType_B
+    // TODO...
 }
 
 //__op___________fn3__________...
 #op(op_BRANCH,   fn3_BNE,     * ) { BNE
-    valid
+    valid, iType_B
+    // TODO...
 }
 
 //__op___________fn3__________...
 #op(op_BRANCH,   fn3_BLT,     * ) { BLT
-    valid
+    valid, iType_B
+    // TODO...
 }
 
 //__op___________fn3__________...
 #op(op_BRANCH,   fn3_BGE,     * ) { BGE
-    valid
+    valid, iType_B
+    // TODO...
 }
 
 //__op___________fn3__________...
 #op(op_BRANCH,   fn3_BLTU,    * ) { BLTU
-    valid
+    valid, iType_B
+    // TODO...
 }
 
 //__op___________fn3__________...
 #op(op_BRANCH,   fn3_BGEU,    * ) { BGEU
-    valid
+    valid, iType_B
+    // TODO...
 }
 
 //__op___________fn3__________...
 #op(op_LOAD,     fn3_LB,      * ) { LB
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_LOAD,     fn3_LH,      * ) { LH
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_LOAD,     fn3_LW,      * ) { LW
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_LOAD,     fn3_LBU,     * ) { LBU
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_LOAD,     fn3_LHU,     * ) { LHU
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_STORE,    fn3_SB,      * ) { SB
-    valid
+    valid, iType_S
 }
 
 //__op___________fn3__________...
 #op(op_STORE,    fn3_SH,      * ) { SH
-    valid
+    valid, iType_S
 }
 
 //__op___________fn3__________...
 #op(op_STORE,    fn3_SW,      * ) { SW
-    valid
+    valid, iType_S
 }
 
 //__op___________fn3__________...
 #op(op_OP_IMM,   fn3_ADD,     * ) { ADDI
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_OP_IMM,   fn3_SLT,     * ) { SLTI
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_OP_IMM,   fn3_SLTU,    * ) { SLTIU
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_OP_IMM,   fn3_XOR,     * ) { XORI
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_OP_IMM,   fn3_OR,      * ) { ORI
-    valid
+    valid, iType_I
 }
 
 //__op___________fn3__________...
 #op(op_OP_IMM,   fn3_AND,     * ) { ANDI
-    valid
+    valid, iType_I
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP_IMM,   fn3_SLL,     1,   0,    0,    * ) { SLLI
-    valid
+//:__op___________fn3_________f7:z0:5__...
+#op(op_OP_IMM,   fn3_SLL,     1, 0, 0, * ) { SLLI
+    valid, iType_I
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP_IMM,   fn3_SRL,     1,   0,    0,    * ) { SRLI
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP_IMM,   fn3_SRL,     1, 0, 0, * ) { SRLI
+    valid, iType_I
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP_IMM,   fn3_SRA,     1,   0,    1,    * ) { SRAI
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP_IMM,   fn3_SRA,     1, 0, 1, * ) { SRAI
+    valid, iType_I
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_ADD,     1,   0,    0,    * ) { ADD
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_ADD,     1, 0, 0, * ) { ADD
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_SUB,     1,   0,    1,    * ) { SUB
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_SUB,     1, 0, 1, * ) { SUB
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_SLL,     1,   0,    0,    * ) { SLL
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_SLL,     1, 0, 0, * ) { SLL
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_SLT,     1,   0,    0,    * ) { SLT
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_SLT,     1, 0, 0, * ) { SLT
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_SLTU,    1,   0,    0,    * ) { SLTU
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_SLTU,    1, 0, 0, * ) { SLTU
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_XOR,     1,   0,    0,    * ) { XOR
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_XOR,     1, 0, 0, * ) { XOR
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_SRL,     1,   0,    0,    * ) { SRL
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_SRL,     1, 0, 0, * ) { SRL
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_SRA,     1,   0,    1,    * ) { SRA
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_SRA,     1, 0, 1, * ) { SRA
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_OR,      1,   0,    0,    * ) { OR
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_OR,      1, 0, 0, * ) { OR
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_AND,     1,   0,    0,    * ) { AND
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_AND,     1, 0, 0, * ) { AND
+    valid, iType_R
 }
 
 //__op___________fn3__________...
 #op(op_MISC_MEM, fn3_FENCE,   * ) { FENCE
-    valid
+    valid, iType_I
+    id_rs1_en = 0
+    wb_rd_en  = 0
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__rs2z__rs2:0__rxz__...
-#op(op_SYSTEM, fn3_PRIV,      1,   0,    0,    1,    0,     1,   * ) { ECALL
-    valid
+//__op___________fn3__________f7z:0:5__rs2z:0__rxz__...
+#op(op_SYSTEM, fn3_PRIV,      1, 0, 0,  1, 0,   1,  * ) { ECALL
+    valid, iType_I
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__rs2z__rs2:0__rxz__...
-#op(op_SYSTEM, fn3_PRIV,      1,   0,    0,    1,    1,     1,   * ) { EBREAK
-    valid
+//__op___________fn3__________f7z:0:5__rs2z:0__rxz__...
+#op(op_SYSTEM, fn3_PRIV,      1, 0, 0,  1, 1,   1,  * ) { EBREAK
+    valid, iType_I
 }

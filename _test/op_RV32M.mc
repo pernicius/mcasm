@@ -41,48 +41,49 @@
  *  - order doesn't matter
  *  - they must be ',' separated
  *  - multiple lines are possible
+ *  - can be a macro identifier
  *  - if only the identifier is given, then it will be set all bits to '1'
  *  - if the identifier is prefixed with '!' the binary inverted default value will be used (0>1, 0b101>0b010)
  *  - identifier=value sets the signal to the given value
  *  - all ungiven signals will be set to their default value
  */
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_MUL,     1,   1,    0,    * ) { MUL
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_MUL,     1, 1, 0, * ) { MUL
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_MULH,    1,   1,    0,    * ) { MULH
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_MULH,    1, 1, 0, * ) { MULH
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_MULHSU,  1,   1,    0,    * ) { MULHSU
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_MULHSU,  1, 1, 0, * ) { MULHSU
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_MULHU,   1,   1,    0,    * ) { MULHU
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_MULHU,   1, 1, 0, * ) { MULHU
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_DIV,     1,   1,    0,    * ) { DIV
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_DIV,     1, 1, 0, * ) { DIV
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_DIVU,    1,   1,    0,    * ) { DIVU
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_DIVU,    1, 1, 0, * ) { DIVU
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_REM,     1,   1,    0,    * ) { REM
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_REM,     1, 1, 0, * ) { REM
+    valid, iType_R
 }
 
-//__op___________fn3__________f7z__f7:0__f7:5__...
-#op(op_OP,       fn3_REMU,    1,   1,    0,    * ) { REMU
-    valid
+//__op___________fn3__________f7z:0:5__...
+#op(op_OP,       fn3_REMU,    1, 1, 0, * ) { REMU
+    valid, iType_R
 }

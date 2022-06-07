@@ -55,6 +55,12 @@ typedef struct defs {
 } defs_t;
 
 
+typedef struct macros {
+    string sname;       // identifier
+    string scontent;    // replacement
+} macros_t;
+
+
 typedef struct ops {
     int nival;              // value of all inputs
     int nimask;             // used bits of all inputs
@@ -72,6 +78,7 @@ class Parser
     vector<inputs_t>  vinputs;
     vector<signals_t> vsignals;
     vector<defs_t>    vdefs;
+    vector<macros_t>  vmacros;
     vector<ops_t>     vops;
     int signals_nchips;
     int signals_nbits;
@@ -79,6 +86,7 @@ class Parser
 
     size_t _findSignal(const string& str);
     size_t _findDefine(const string& str);
+    size_t _findMacro(const string& str);
 
     int _parseNum(size_t pos, size_t *next);
     size_t _parseDelim(size_t pos, const char *delim);
@@ -87,6 +95,7 @@ class Parser
     int ParseInputs();
     int ParseSignals();
     int ParseDefines();
+    int ParseMacros();
     int ParseDefaults();
     int ParseOpcode();
 
